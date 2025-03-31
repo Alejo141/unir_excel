@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.title("Unir Archivos Excel por Columnas")
+st.title("Unir Archivos Excel por Filas")
 
 uploaded_files = st.file_uploader("Cargar archivos Excel", type=["xls", "xlsx"], accept_multiple_files=True)
 
@@ -11,8 +11,8 @@ if uploaded_files:
         df = pd.read_excel(file)
         dataframes.append(df)
     
-    # Unir archivos por columnas
-    merged_df = pd.concat(dataframes, axis=1)
+    # Unir archivos por filas
+    merged_df = pd.concat(dataframes, axis=0, ignore_index=True)
     
     # Guardar el archivo combinado
     output_file = "archivos_combinados.xlsx"
